@@ -9,7 +9,7 @@
 <body>
 <header class="container">
     <h1>
-        <a href="">
+        <a href="index.html">
             <img src="img/logo.png" alt="Mirror Fashion">
         </a>
     </h1>    
@@ -27,34 +27,34 @@
         <a href="#">Ajuda</a>
     </nav>
 </header>
-<main>
+<main class="container">
 
     <section class="produto">
         <h1>Camiset Ecko Caveira Bad to the bone</h1>
         <p>por apenas R$ 48,95</p>
 
         <form action="checkout.html">
-            <fieldset>
+            <fieldset class="cores">
                 <legend>Escolha a cor:</legend>
 
-                <input type="radio" name="cor" value="verde" id="verde">
-                <label for="">
+                <input type="radio" name="cor" value="verde" id="verde" checked>
+                <label for="verde">
                     <img src="img/produtos/foto1-verde.png" alt="Blazer Verde">
                 </label>
 
                 <input type="radio" name="cor" value="rosa" id="rosa">
-                <label for="">
+                <label for="rosa">
                     <img src="img/produtos/foto1-rosa.png" alt="Blazer Rosa">
                 </label>
 
                 <input type="radio" name="cor" value="azul" id="azul">
-                <label for="">
+                <label for="azul">
                     <img src="img/produtos/foto1-azul.png" alt="Blazer Azul">
                 </label>
 
             </fieldset>
 
-            <fieldset>
+            <fieldset class="tamanho">
                 <legend>Escolha o tamanho:</legend>
                 <input type="range" value="42" min="36" max="46" step="2" id="tamanho">
                 <output for="tamanho">42</output>
@@ -109,5 +109,28 @@
 
     </div>
 </footer>
+<script type="text/javascript">
+
+    let output = document.querySelector('output')
+
+function atualizaTamanho(){
+
+    output.textContent = document.querySelector('#tamanho').value
+}
+
+function olaMundo(){
+    console.log('ola mundo')
+}
+
+//document.querySelector('#tamanho').oninput = atualizaTamanho
+
+document.querySelector('#tamanho')
+        .addEventListener('input', atualizaTamanho)
+
+document.querySelector('#tamanho')
+        .addEventListener('click', olaMundo)
+
+
+</script>
 </body>
 </html>

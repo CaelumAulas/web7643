@@ -47,9 +47,14 @@ table {
 	border-spacing: 0;
 }
 
-* {
+*,
+*:before,
+*:after {
     box-sizing: border-box;
 }
+
+
+
 
 /* Estilos gerais ================================================ */
 body {
@@ -93,6 +98,7 @@ header {
     left:0;
     text-align: center;
     width: 100%;
+    z-index: 1;
 }
 
 .menu-opcoes a {
@@ -104,6 +110,14 @@ header {
     margin-right: -2px;
     text-decoration: none;
     padding: 5px 10px;
+}
+
+.menu-opcoes a:first-child {
+    border-left: 0;
+}
+
+.menu-opcoes a:last-child {
+    border-right: 0;
 }
 
 /* Home */
@@ -239,8 +253,106 @@ footer .social a[href*="google"]{
     background-image: url(../img/googleplus.png);
 }
 
-/*Mobile*/
+/*Página do produto */
 
+.produto .cores {
+    padding-top: 60px;
+    position: relative;
+}
+
+.produto .cores input {
+    display: none;
+}
+
+/* 
+.produto .cores label img {
+    display: none;
+} 
+
+ .produto .cores input:checked + label img {
+    display: inline-block;
+} 
+*/
+
+/* ou */
+.produto .cores input:not(:checked) + label img {
+    display: none;
+}
+
+.produto .cores label {
+    display: block;
+}
+/*o ::before cria um pseudo-elemento antes do conteúdo do label */
+.produto .cores label::before {
+    background-color: silver;
+    border-radius: 50%;
+    box-sizing: border-box;
+    content: ''; /*obrigatorio ter esta propriedade para o pseudo-elemento funcionar*/
+    cursor: pointer;
+    display: inline-block;
+    height: 50px;
+    position: absolute;
+    width: 50px;
+    top: 20px;
+}
+
+/* pseudo-classe :checked , + seletor de irmão adjacente */
+.produto .cores input:checked + label::before {
+    border: 8px solid rgba(0,0,0,.5)
+}
+
+.produto .cores label[for="verde"]::before {
+    background-color: limegreen;
+    left: 0;
+}
+
+.produto .cores label[for="rosa"]::before{
+    background-color: hotpink;
+    left: 60px;
+}
+
+.produto .cores label[for="azul"]::before{
+    background-color: purple;
+    left: 120px;
+}
+
+.produto button {
+    background-color: limegreen;
+    font-size: 2em;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    margin: 1em 0;
+}
+
+.produto h1 {
+    font-size: 30px;
+    margin-bottom: 10px;
+}
+
+.produto h1 + p {
+    font-size: 20px;
+    font-style: italic;
+    margin-bottom: 20px;
+}
+
+
+
+/* .produto .cores label::after{
+    content: 'depois do conteudo'
+} */
+
+/* .produto .cores .radio {
+    height: 50px;
+    width: 50px;
+    display: inline-block;
+    background-color: green;
+    border-radius: 50%;
+} */
+
+
+
+/*Mobile*/
 /*Até 768px carrega estes estilos*/
 @media (max-width: 768px){
     .container {
@@ -268,8 +380,50 @@ footer .social a[href*="google"]{
     }
 }
 
+@media (min-width: 768px){
+    
+    .produto {
+        margin: 2em 0;
+        padding-left: 40%;
+        position: relative;
+    }
+
+    .produto fieldset {
+        display: inline-block;
+        margin: 20px 0;
+        vertical-align: top;
+        width: 45%;
+    }    
+
+    .produto .cores{
+        position: static;
+        padding-top: 0;
+        margin-right: 20px;
+    }
+    
+    .produto .cores img {
+        position: absolute;
+        top: 0;
+        left: 0;
+        max-height: 100%;
+        width: auto;
+    }
+
+    .produto .cores label {
+        display: inline-block;
+    }
+
+    .produto .cores label::before {
+        position: static;
+    }
+
+}
 
 
+.painel li:nth-child(n+7) {
+    display: none;
+}
 
-
-
+.painel.expandido li:nth-child(n+7){
+    display: inline-block;
+}
